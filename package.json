@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nileshlaxmi/a2z-frontend.git"
+    "url": "git+https://github.com/A2Z-hq/a2z-frontend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nileshlaxmi/a2z-frontend/issues"
+    "url": "https://github.com/A2Z-hq/a2z-frontend/issues"
   },
-  "homepage": "https://github.com/nileshlaxmi/a2z-frontend#readme"
+  "homepage": "https://github.com/A2Z-hq/a2z-frontend#readme"
 }
