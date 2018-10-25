@@ -22,6 +22,6 @@ node_modules
 
 # Apple stuff
 .DS_Store
-/.vs/a2z-frontend2/v15
+/.vs/slnx.sqlite
 /.vs/config
 /.vs
