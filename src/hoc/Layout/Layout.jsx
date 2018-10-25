@@ -14,10 +14,10 @@ const Layout = (props) => {
                     <div id="header-right">
                         <nav>
                             <ul>
-                                <li><a href="/">Explorer</a></li>
-                                <li><a href="/">Roadmaps</a></li>
-                                <li><a href="/">SignUp</a></li>
-                                <li><LinkButton href="/">Login</LinkButton></li>
+                                <li><a href="/explorer">Explorer</a></li>
+                                <li><a href="/roadmaps">Roadmaps</a></li>
+                                <li><a href="/signup">SignUp</a></li>
+                                <li><LinkButton href="/login">Login</LinkButton></li>
                             </ul>
                         </nav>
                     </div>
