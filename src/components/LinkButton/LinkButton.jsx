@@ -10,7 +10,7 @@ const LinkButton = (props) => {
     }
 
     return (
-        <a href={props.href} style={variableStyles} className="link-button" target='_blank' rel="noopener noreferrer">{props.children}</a>
+        <a href={props.href} style={variableStyles} className="link-button">{props.children}</a>
     );
 }
 
