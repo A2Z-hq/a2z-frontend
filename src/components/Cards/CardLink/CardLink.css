@@ -1,0 +1,81 @@
+.card-link {
+    height: 18vw;
+    line-height: 18vw;
+    text-align: left;
+    margin-bottom: 7vw;
+    box-shadow: 2px 8px 30px rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+}
+
+.card-link a {
+    text-decoration: none;
+    display: block;
+    color: white;
+    font-size: 0.9em;
+    font-weight: 500;
+    width: 100%;
+    height: 100%;
+}
+
+
+.card-link img {
+    width: 10%;
+    margin-top: -4px;
+    margin-right: 5%;
+    margin-left: 5%;
+    vertical-align: middle;
+}
+
+@media only screen and (max-width: 400px) {
+    .card-link a {
+        font-size: 0.7em;
+    }
+}
+ 
+
+@media only screen and (min-width: 481px) {
+    .card-link {
+        line-height: 2.5vw;
+        text-align: center;
+        margin: 0 2vw;
+        margin-top: 0;
+        margin-bottom: 3.5vw;
+        border-radius: 7px;
+    }
+
+    .card-link a {
+        box-sizing: border-box;
+        padding: 25% 10%;
+        font-size: 0.7em;
+    }
+
+    .card-link span {
+        display: block;
+    }
+
+    .card-link img {
+        width: 30%;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .card-link {
+        height: 16vw;
+        line-height: 1.6vw;
+        margin-top: 0;
+        margin-bottom: 3vw;
+        border-radius: 15px;
+    }
+
+    .card-link a {
+        padding: 27% 10%;
+        font-size: .9em;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .card-link a {
+        font-size: 1.2vw;
+    }
+}
