@@ -5,7 +5,7 @@
     grid-template-columns: 100%;
 }
 
-@media only screen and (max-width: 768px) and (min-width: 481px) {
+@media only screen and (max-width: 1023px) and (min-width: 481px) {
     .cards-container {
         grid-template-columns: 33% 33% 33%;
         margin: 4vh auto;

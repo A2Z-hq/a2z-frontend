@@ -222,7 +222,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1023px) {
 
     header {
         height: 12vh;
@@ -243,7 +243,7 @@ footer {
     footer {
         height: 125px;
     }
-
+    
     #footer-container {
         padding-top: 4%;
     }
