@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Layout from '../../hoc/Layout/Layout';
 import Home from '../Home/Home';
+import Signup from '../Signup/Signup';
 import { Provider } from '../../components/Context/Context';
 
 class App extends Component {
@@ -34,7 +35,8 @@ class App extends Component {
             navHandler: this.navHandler
             }}>
             <Layout>
-              <Route path="/" exact component={Home} />
+                  <Route path="/" exact component={Home} />
+                  <Route path="/signup" exact component={Signup} />      
             </Layout>
           </Provider>
         </div>
