@@ -5,6 +5,7 @@ import Layout from '../../hoc/Layout/Layout';
 import Home from '../Home/Home';
 import Landing from '../../components/Landing/Landing';
 import { Provider } from '../../components/Context/Context';
+import ResourcesPage from '../ResourcesPage/ResourcesPage';
 
 
 class App extends Component {
@@ -50,6 +51,9 @@ class App extends Component {
                 <Landing toggleLanding={this.toggleLanding} />
               )} />
               <Route path="/home" exact component={Home} />
+              <Route path="/home/coding-resources" exact render={() => (
+                <ResourcesPage title="Coding Resources" />
+              )} />
             </Layout>
           </Provider>
         </div>

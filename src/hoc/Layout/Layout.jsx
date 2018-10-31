@@ -27,7 +27,7 @@ const Layout = (props) => {
                     }
                 };
 
-                return <React.Fragment>
+                return <>
                     {(navIsOpen) ? <Backdrop /> : null}
                     <SlidingNav />
                     <header style={isLanding ? landingStyles.header : null}>
@@ -57,9 +57,8 @@ const Layout = (props) => {
                         </div>
                     </header>
 
-                    <main style={isLanding ? landingStyles.main : null}>
-                        {props.children}
-                    </main>
+                    {props.children}
+                    
                     
                     <footer style={isLanding ? landingStyles.footer : null}>
                         <div id="footer-container">
@@ -105,7 +104,7 @@ const Layout = (props) => {
                             </a>
                         </div>
                     </div>
-                </React.Fragment>
+                </>
             }}
         </Consumer>
     )

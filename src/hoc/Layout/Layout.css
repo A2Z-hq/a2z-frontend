@@ -57,15 +57,13 @@ header {
     padding: 1vw 2vw;
 }
 
-main {
-    width: 100%;
-}
 
 footer {
     width: 100%;
-    bottom: 0;
+    clear: both;
     height: 25vh;
     position: relative;
+    z-index: 10;
     background: url('../../assets/images/footer.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -240,6 +238,12 @@ footer {
         letter-spacing: 0px;
     }
 
+    main {
+        min-height: 80vh;
+        height: auto;
+        margin-bottom: 5%;
+    }
+
     footer {
         height: 125px;
     }
@@ -271,10 +275,12 @@ footer {
 
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 524px) {
 
     header {
         height: 10vh;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        background-color: #eee;
     }
 
     #header-container {
@@ -287,6 +293,10 @@ footer {
 
     nav {
         display: none;
+    }
+
+    main {
+        min-height: 70vh;
     }
 
     footer {

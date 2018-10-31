@@ -1,0 +1,29 @@
+.resources-page-container {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 7vh;
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.resources-page-container h1 {
+    font-size: 1.1em;
+}
+
+.resources-page-container div {
+    min-height: 100%;
+    height: auto;
+    display: block;
+}
+
+@media only screen and (min-width: 1024px) {
+    .resources-page-container {
+        margin: 2% auto;
+        margin-bottom: 10%;
+    }
+
+    .resources-page-container h1 {
+        font-size: 2vw;
+    }
+}
