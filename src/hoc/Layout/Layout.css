@@ -39,11 +39,8 @@ header {
 }
 
 #header-right li:last-child {
-    background: -webkit-gradient(linear,left top, left bottom,from(#8eb7f5),to(#40e1dc));
-    background: -webkit-linear-gradient(#8eb7f5,#40e1dc);
-    background: -o-linear-gradient(#8eb7f5,#40e1dc);
-    background: linear-gradient(#8eb7f5,#40e1dc);
-    border-radius: 5vw;
+    background: #99cffe;
+    border-radius: 5px;
     color: white;
     -webkit-box-shadow: 2px 8px 25px rgba(0, 0, 0, 0.16);
             box-shadow: 2px 8px 25px rgba(0, 0, 0, 0.16);
