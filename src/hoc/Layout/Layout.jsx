@@ -13,7 +13,7 @@ import gitter from '../../assets/images/gitter.png';
 const Layout = (props) => {
     return (
         <Consumer>
-            {({ navIsOpen, isLanding }) => {
+            {({ navIsOpen, navHandler, isLanding }) => {
 
                 const landingStyles ={
                     header: {
@@ -28,7 +28,7 @@ const Layout = (props) => {
                 };
 
                 return <>
-                    {(navIsOpen) ? <Backdrop /> : null}
+                    {(navIsOpen) ? <Backdrop clicked={navHandler} /> : null}
                     <SlidingNav />
                     <header style={isLanding ? landingStyles.header : null}>
                         <div id="header-container">

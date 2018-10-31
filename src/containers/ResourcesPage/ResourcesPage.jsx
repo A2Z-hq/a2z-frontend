@@ -8,33 +8,37 @@ import haskell from '../../assets/images/icons/haskell.png';
 import ml from '../../assets/images/icons/ml.png';
 import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
+import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
+import { Route } from 'react-router-dom';
 
 export default class ResourcesPage extends React.Component {
 
     state = {
         resources: [
             {
-                title: "Python", url: "/coding/python", linksCount: "50", fav: false, icon: python,
+                title: "Python", url: "/coding-resources/python", linksCount: "50", fav: false, icon: python,
             },
             {
-                title: "Machine Learning", url: "/coding/ml", linksCount: "62", fav: false, icon: ml,
+                title: "Machine Learning", url: "/coding-resources/ml", linksCount: "62", fav: false, icon: ml,
             },
             {
-                title: "Android", url: "/coding/android", linksCount: "57", fav: false, icon: android,
+                title: "Android", url: "/coding-resources/android", linksCount: "57", fav: false, icon: android,
             },
             {
-                title: "Frontend", url: "/coding/frontend", linksCount: "125", fav: false, icon: frontend,
+                title: "Frontend", url: "/coding-resources/frontend", linksCount: "125", fav: false, icon: frontend,
             },
             {
-                title: "Backend", url: "/coding/backend", linksCount: "75", fav: false, icon: backend,
+                title: "Backend", url: "/coding-resources/backend", linksCount: "75", fav: false, icon: backend,
             },
             {
-                title: "Haskell", url: "/coding/haskell", linksCount: "20", fav: false, icon: haskell,
+                title: "Haskell", url: "/coding-resources/haskell", linksCount: "20", fav: false, icon: haskell,
             },
             {
-                title: "Scala", url: "/coding/scala", linksCount: "57", fav: false, icon: scala,
+                title: "Scala", url: "/coding-resources/scala", linksCount: "57", fav: false, icon: scala,
             },
         ],
+
+        openResource: false
     }
 
     bookmarkHandler = (title) => {
@@ -55,7 +59,26 @@ export default class ResourcesPage extends React.Component {
         })
     }
 
+    exploreHandler = (title) => {
+        this.setState({
+            openResource: title
+        })
+    }
+
     render() {
+
+        let current = this.state.openResource ? this.state.resources[this.state.resources.findIndex(res => res.title === this.state.openResource)] : null;
+
+        const explore = this.state.openResource ? <Route path={current.url} render={() => (
+                            <ResourceCardExpanded
+                                explore={this.exploreHandler}
+                                title={this.state.openResource}
+                                icon={current.icon}
+                                bookmark={this.bookmarkHandler}
+                                isBookmarked={current.fav}
+                                color={this.props.color}/>
+                        )} /> : null;
+
         return (
             <div className="resources-page-container">
                 <h1>{this.props.title}</h1>
@@ -65,13 +88,18 @@ export default class ResourcesPage extends React.Component {
                             <ResourceCard
                                 key={res.title}
                                 icon={res.icon}
+                                url={res.url}
                                 title={res.title}
                                 linksCount={res.linksCount}
                                 bookmark={this.bookmarkHandler}
-                                isBookmarked={res.fav} />
+                                isBookmarked={res.fav}
+                                openResource={this.state.openResource}
+                                explore={this.exploreHandler}
+                                color={this.props.color}/>
                         )
                     })}
                 </div>
+                {explore}
             </div>
         );
     }
