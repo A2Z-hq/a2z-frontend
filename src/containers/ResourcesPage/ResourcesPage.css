@@ -5,6 +5,7 @@
     margin-bottom: 10%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .resources-page-container h1 {
@@ -15,6 +16,17 @@
     min-height: 100%;
     height: auto;
     display: block;
+}
+
+.backdrop-resource-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 15;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 1024px) {

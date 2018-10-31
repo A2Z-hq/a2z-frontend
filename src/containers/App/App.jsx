@@ -18,7 +18,7 @@ class App extends Component {
       ["SignUp", "/signup"],
       ["Roadmaps", "/roadmaps"],
       ["Explorer", "/explorer"],
-    ]
+    ],
   }
 
   navHandler = () => {
@@ -43,7 +43,7 @@ class App extends Component {
             isLanding: this.state.isLanding,
             navIsOpen: this.state.navIsOpen,
             navLinks: this.state.navLinks, 
-            navHandler: this.navHandler
+            navHandler: this.navHandler,
             }}>
             {/* <Loader /> */}
             <Layout>
@@ -51,8 +51,8 @@ class App extends Component {
                 <Landing toggleLanding={this.toggleLanding} />
               )} />
               <Route path="/home" exact component={Home} />
-              <Route path="/home/coding-resources" exact render={() => (
-                <ResourcesPage title="Coding Resources" />
+              <Route path="/coding-resources" render={() => (
+                <ResourcesPage title="Coding Resources" color="#99cffe" />
               )} />
             </Layout>
           </Provider>
