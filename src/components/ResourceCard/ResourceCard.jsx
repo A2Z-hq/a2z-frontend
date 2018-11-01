@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 const ResourceCard = (props) => {
 
-    //let resourceCardClassName = (props.openResource === props.title) ? "resource-card expanded" : "resource-card";
-
     return (
         <div className="resource-card">
             <h2>
@@ -26,11 +24,12 @@ const ResourceCard = (props) => {
                 </span>
             </h2>
             <p>Total Links: {props.linksCount}</p>
-            <button
-                onClick={() => props.explore(props.title)}
-                style={{ borderColor: props.color, backgroundColor: props.color }}>
-                <Link to={props.url}>Explore&nbsp; ➡</Link>
-            </button>
+            <Link to={props.url}>
+                <button
+                    style={{ borderColor: props.color, backgroundColor: props.color }}>
+                    Explore&nbsp; ➡
+                </button>
+            </Link>
         </div>
         
     );

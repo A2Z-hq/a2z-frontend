@@ -9,7 +9,7 @@ import ml from '../../assets/images/icons/ml.png';
 import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
-import { Route, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 class ResourcesPage extends React.Component {
 
@@ -37,9 +37,6 @@ class ResourcesPage extends React.Component {
                 title: "Scala", url: "/coding-resources/scala", linksCount: "57", fav: false, icon: scala,
             },
         ],
-
-        openResource: false,
-        redirect: false,
     }
 
     bookmarkHandler = (title) => {
@@ -60,32 +57,7 @@ class ResourcesPage extends React.Component {
         })
     }
 
-    exploreHandler = (title) => {
-        this.setState({
-            openResource: title
-        })
-    }
-
     render() {
-
-        let current = this.state.openResource ? this.state.resources[this.state.resources.findIndex(res => res.title === this.state.openResource)] : null;
-
-        const explore = this.state.openResource ? <Route path={current.url} exact render={() => (
-                            <ResourceCardExpanded
-                                explore={this.exploreHandler}
-                                title={this.state.openResource}
-                                icon={current.icon}
-                                bookmark={this.bookmarkHandler}
-                                isBookmarked={current.fav}
-                                color={this.props.color}/>
-                        )} /> : null;
-
-        const { redirect } = this.state;
-
-        if(redirect) {
-            return <Redirect to="/coding-resources" />;
-        }
-
         return (
             <div className="resources-page-container">
                 <h1>{this.props.title}</h1>
@@ -100,16 +72,26 @@ class ResourcesPage extends React.Component {
                                 linksCount={res.linksCount}
                                 bookmark={this.bookmarkHandler}
                                 isBookmarked={res.fav}
-                                openResource={this.state.openResource}
-                                explore={this.exploreHandler}
                                 color={this.props.color}/>
                         )
                     })}
                 </div>
-                {explore}
+                <Switch>
+                    {this.state.resources.map(res => (
+                        <Route key={res.title} path={res.url} exact render={() => (
+                            <ResourceCardExpanded
+                                title={res.title}
+                                icon={res.icon}
+                                bookmark={this.bookmarkHandler}
+                                isBookmarked={res.fav}
+                                color={this.props.color}/>
+                        )} />
+                    ))}
+                    <Redirect to="/coding-resources" />
+                </Switch>
             </div>
         );
     }
 }
 
-export default withRouter(ResourcesPage);
+export default ResourcesPage;
