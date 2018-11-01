@@ -44,6 +44,7 @@
     font-size: 1em;
     border-radius: 1px;
     cursor: pointer;
+    outline: none;
 }
 
 @keyframes slide-in {

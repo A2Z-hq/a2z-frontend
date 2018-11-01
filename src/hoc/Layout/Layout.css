@@ -21,12 +21,6 @@ header {
             justify-content: space-between;
 }
 
-.ellipse {
-    position: absolute;
-    height: 25vh;
-    z-index: -1;
-}
-
 #header-right ul {
     list-style: none;
 }
