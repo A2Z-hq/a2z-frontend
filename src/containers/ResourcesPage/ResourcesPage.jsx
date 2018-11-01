@@ -9,9 +9,9 @@ import ml from '../../assets/images/icons/ml.png';
 import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
-import { Route } from 'react-router-dom';
+import { Route, withRouter, Redirect } from 'react-router-dom';
 
-export default class ResourcesPage extends React.Component {
+class ResourcesPage extends React.Component {
 
     state = {
         resources: [
@@ -38,7 +38,8 @@ export default class ResourcesPage extends React.Component {
             },
         ],
 
-        openResource: false
+        openResource: false,
+        redirect: false,
     }
 
     bookmarkHandler = (title) => {
@@ -69,7 +70,7 @@ export default class ResourcesPage extends React.Component {
 
         let current = this.state.openResource ? this.state.resources[this.state.resources.findIndex(res => res.title === this.state.openResource)] : null;
 
-        const explore = this.state.openResource ? <Route path={current.url} render={() => (
+        const explore = this.state.openResource ? <Route path={current.url} exact render={() => (
                             <ResourceCardExpanded
                                 explore={this.exploreHandler}
                                 title={this.state.openResource}
@@ -78,6 +79,12 @@ export default class ResourcesPage extends React.Component {
                                 isBookmarked={current.fav}
                                 color={this.props.color}/>
                         )} /> : null;
+
+        const { redirect } = this.state;
+
+        if(redirect) {
+            return <Redirect to="/coding-resources" />;
+        }
 
         return (
             <div className="resources-page-container">
@@ -104,3 +111,5 @@ export default class ResourcesPage extends React.Component {
         );
     }
 }
+
+export default withRouter(ResourcesPage);

@@ -1,11 +1,14 @@
 import React from 'react';
 import './ResourceCardExpanded.css';
 import Backdrop from '../Backdrop/Backdrop';
+import { Link } from 'react-router-dom';
 
 const ResourceCardExpanded = (props) => {
     return (
         <>
-            <Backdrop clicked={() => props.explore(false)} />
+            <Link to="/coding-resources">
+                <Backdrop clicked={() => props.explore(false)} />
+            </Link>
             <div className="expanded-resource-card">
                 <h2>
                     <span>
@@ -25,9 +28,11 @@ const ResourceCardExpanded = (props) => {
                             }}>
                         </span>
                         <span>
-                            <button  className="close" onClick={() => props.explore(false)}>
-                                <span role="img" aria-label="close-button">❌</span>
-                            </button>
+                            <Link to="/coding-resources"> 
+                                <button  className="close" onClick={() => props.explore(false)}>
+                                    <span role="img" aria-label="close-button">❌</span>
+                                </button>
+                            </Link>
                         </span>
                     </span>
                 </h2>
