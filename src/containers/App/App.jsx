@@ -51,8 +51,7 @@ class App extends Component {
                 <Landing toggleLanding={this.toggleLanding} />
               )} />
               <Route path="/home" exact component={Home} />
-                  <Route path="/" exact component={Home} />
-                  <Route path="/signup" exact component={Signup} />      
+              <Route path="/signup" exact component={Signup} />      
             </Layout>
           </Provider>
         </div>
