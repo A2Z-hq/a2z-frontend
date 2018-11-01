@@ -16,11 +16,11 @@
         border: 1px solid #9c9c9c;
 }
 
-.signup-form input[type=submit] {
-    background: lightgrey;
-    padding: 0.7em;
-    border: 0;
-}
+ .signup-form input[type=submit] {
+        background: #678;
+        padding: 0.7em;
+        border: 0;
+ }
 
 
 label {
@@ -38,7 +38,7 @@ input:focus {
       outline: 3px solid gold;
  }
 
-@media (min-width: 400px) {
+@media (min-width: 350px) {
     form {
         overflow: hidden;
     }
