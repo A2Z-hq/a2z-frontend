@@ -1,0 +1,59 @@
+﻿body {
+}
+
+.signup-form {
+    background: #f9f9f9;
+    margin-top: 2rem;
+    max-width: 590px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+.signup-form  input {
+        margin-bottom: 2rem;
+        background: #fff;
+        border: 1px solid #9c9c9c;
+}
+
+ .signup-form input[type=submit] {
+        background: #678;
+        padding: 0.7em;
+        border: 0;
+ }
+
+
+label {
+    display: block;
+    padding: 0.5em 1.5em 0.5em 0;
+}
+
+input {
+    width: 100%;
+    padding: 0.7em;
+    margin-bottom: 0.5rem;
+}
+
+input:focus {
+      outline: 3px solid gold;
+ }
+
+@media (min-width: 350px) {
+    form {
+        overflow: hidden;
+    }
+
+    label {
+        float: left;
+        width: 108px;
+    }
+
+    input {
+        float: left;
+        width: calc(100% - 200px);
+    }
+
+    .signup-form input[type=submit] {
+        width: calc(100% - 200px)
+    }
+}

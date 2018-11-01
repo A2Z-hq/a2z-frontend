@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Layout from '../../hoc/Layout/Layout';
 import Home from '../Home/Home';
 import Landing from '../../components/Landing/Landing';
+import Signup from '../Signup/Signup';
 import { Provider } from '../../components/Context/Context';
 
 
@@ -50,6 +51,7 @@ class App extends Component {
                 <Landing toggleLanding={this.toggleLanding} />
               )} />
               <Route path="/home" exact component={Home} />
+              <Route path="/signup" exact component={Signup} />      
             </Layout>
           </Provider>
         </div>
