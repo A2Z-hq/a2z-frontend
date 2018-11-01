@@ -21,6 +21,7 @@ class ResourceCardExpanded extends React.Component {
                         <span>
                             <span
                                 className="fa fa-star"
+                                title="Bookmark"
                                 onClick={() => this.props.bookmark(this.props.title)}
                                 style={{ 
                                     cursor: 'pointer',

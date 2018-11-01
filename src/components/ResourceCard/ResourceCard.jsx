@@ -15,6 +15,7 @@ const ResourceCard = (props) => {
                 </span>
                 <span
                     className="fa fa-star"
+                    title="Bookmark"
                     onClick={() => props.bookmark(props.title)}
                     style={{ 
                         cursor: 'pointer',
