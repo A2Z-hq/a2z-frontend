@@ -270,8 +270,8 @@ footer {
 
     header {
         height: 10vh;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        background-color: #eee;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        background-color: #fff;
     }
 
     #header-container {

@@ -12,6 +12,14 @@
     z-index: -1;
 }
 
+.background-svg-3 {
+    width: 10vw;
+    position: fixed;
+    left: 0;
+    top: 80%;
+    z-index: -1;
+}
+
 .background-svg-2 {
     width: 50vw;
     position: fixed;
@@ -77,6 +85,10 @@
     .background-svg-2 {
         width: 100vw;
         height: auto;
+    }
+
+    .background-svg-3 {
+        display: none;
     }
 
     #landing-page-container {

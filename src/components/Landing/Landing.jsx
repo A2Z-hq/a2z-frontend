@@ -2,6 +2,7 @@ import React from 'react';
 import './Landing.css';
 import back from '../../assets/images/back.png';
 import black from '../../assets/images/vector.png';
+import side from '../../assets/images/side-drop.png';
 import { Link } from 'react-router-dom';
 
 class Landing extends React.Component {
@@ -24,6 +25,7 @@ class Landing extends React.Component {
                 </div>
                 <img src={black} alt="" className="background-svg-2" />
                 <img src={back} alt="" className="background-svg-1" />
+                <img src={side} alt="" className="background-svg-3" />
                 
             </div>
         );
