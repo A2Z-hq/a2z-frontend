@@ -17,25 +17,60 @@ class ResourcesPage extends React.Component {
     state = {
         resourcesInit: [
             {
-                title: "Python", url: "/coding-resources/python", linksCount: "50", fav: false, icon: python,
+                title: "Python",
+                url: "/coding-resources/python",
+                linksCount: "50",
+                fav: false,
+                icon: python,
+                type: "Programming Languages",
             },
             {
-                title: "Machine Learning", url: "/coding-resources/ml", linksCount: "62", fav: false, icon: ml,
+                title: "Machine Learning",
+                url: "/coding-resources/ml",
+                linksCount: "62",
+                fav: false,
+                icon: ml,
+                type: "Technologies",
             },
             {
-                title: "Android", url: "/coding-resources/android", linksCount: "57", fav: false, icon: android,
+                title: "Android",
+                url: "/coding-resources/android",
+                linksCount: "57",
+                fav: false,
+                icon: android,
+                type: "Technologies",
             },
             {
-                title: "Frontend", url: "/coding-resources/frontend", linksCount: "125", fav: false, icon: frontend,
+                title: "Frontend",
+                url: "/coding-resources/frontend",
+                linksCount: "125",
+                fav: false,
+                icon: frontend,
+                type: "Technologies",
             },
             {
-                title: "Backend", url: "/coding-resources/backend", linksCount: "75", fav: false, icon: backend,
+                title: "Backend",
+                url: "/coding-resources/backend",
+                linksCount: "75",
+                fav: false,
+                icon: backend,
+                type: "Technologies",
             },
             {
-                title: "Haskell", url: "/coding-resources/haskell", linksCount: "20", fav: false, icon: haskell,
+                title: "Haskell",
+                url: "/coding-resources/haskell",
+                linksCount: "20",
+                fav: false,
+                icon: haskell,
+                type: "Programming Languages",
             },
             {
-                title: "Scala", url: "/coding-resources/scala", linksCount: "57", fav: false, icon: scala,
+                title: "Scala",
+                url: "/coding-resources/scala",
+                linksCount: "57",
+                fav: false,
+                icon: scala,
+                type: "Programming Languages",
             },
         ],
 
@@ -67,7 +102,11 @@ class ResourcesPage extends React.Component {
     }
 
     filterby = (e) => {
-        console.log(e.target.value);
+        let filter = e.target.value;
+        let newResources = this.state.resourcesInit.filter(res => res.type === filter);
+        this.setState({
+            resources: newResources
+        })
     }
 
     render() {
