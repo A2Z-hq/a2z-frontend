@@ -10,11 +10,12 @@ import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import FilterDesktop from '../../components/FilterDesktop/FilterDesktop';
 
 class ResourcesPage extends React.Component {
 
     state = {
-        resources: [
+        resourcesInit: [
             {
                 title: "Python", url: "/coding-resources/python", linksCount: "50", fav: false, icon: python,
             },
@@ -37,6 +38,14 @@ class ResourcesPage extends React.Component {
                 title: "Scala", url: "/coding-resources/scala", linksCount: "57", fav: false, icon: scala,
             },
         ],
+
+        resources: []
+    }
+
+    componentDidMount() {
+        this.setState({
+            resources: this.state.resourcesInit
+        })
     }
 
     bookmarkHandler = (title) => {
@@ -57,10 +66,17 @@ class ResourcesPage extends React.Component {
         })
     }
 
+    filterby = (e) => {
+        console.log(e.target.value);
+    }
+
     render() {
         return (
             <div className="resources-page-container">
-                <h1>{this.props.title}</h1>
+                <div className="resources-page-header">
+                    <h1>{this.props.title}</h1>
+                    <FilterDesktop filterby={this.filterby} options={['Programming Languages', 'Technologies']} />
+                </div>
                 <div>
                     {this.state.resources.map(res => {
                         return (

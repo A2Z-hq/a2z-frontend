@@ -8,8 +8,13 @@
     position: relative;
 }
 
+.resources-page-header {
+    width: 95%;
+}
+
 .resources-page-container h1 {
     font-size: 1.1em;
+    padding-top: 7px;
 }
 
 .resources-page-container div {
@@ -37,5 +42,10 @@
 
     .resources-page-container h1 {
         font-size: 2vw;
+        float: left;
     }
+
+    .resources-page-header div {
+        float: right;
+    }    
 }
