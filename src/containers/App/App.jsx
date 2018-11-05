@@ -37,7 +37,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>  
+      <BrowserRouter basename={process.env.PUBLIC_URL}>  
         <div className="App">
           <Provider value={{
             isLanding: this.state.isLanding,
