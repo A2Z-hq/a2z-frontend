@@ -20,7 +20,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 .resource-card img {
