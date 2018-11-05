@@ -47,6 +47,14 @@
     outline: none;
 }
 
+.resource-links-container {
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
 @keyframes slide-in {
     from {
         transform: translateY(100%);
