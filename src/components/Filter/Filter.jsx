@@ -1,7 +1,7 @@
 import React from 'react';
-import './FilterDesktop.css';
+import './Filter.css';
 
-const FilterDesktop = (props) => {
+const Filter = (props) => {
     return (
         <div className="filter-desktop-container">
             <select defaultValue="Filter" onChange={(e) => props.filterby(e)}>
@@ -19,4 +19,4 @@ const FilterDesktop = (props) => {
     );
 }
 
-export default FilterDesktop;
+export default Filter;

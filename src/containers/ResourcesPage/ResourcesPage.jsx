@@ -10,7 +10,7 @@ import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import FilterDesktop from '../../components/FilterDesktop/FilterDesktop';
+import Filter from '../../components/Filter/Filter';
 
 class ResourcesPage extends React.Component {
 
@@ -114,7 +114,7 @@ class ResourcesPage extends React.Component {
             <div className="resources-page-container">
                 <div className="resources-page-header">
                     <h1>{this.props.title}</h1>
-                    <FilterDesktop filterby={this.filterby} options={['Programming Languages', 'Technologies']} />
+                    <Filter filterby={this.filterby} options={['Programming Languages', 'Technologies']} />
                 </div>
                 <div>
                     {this.state.resources.map(res => {
