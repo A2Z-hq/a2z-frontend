@@ -199,7 +199,6 @@ class ResourcesPage extends React.Component {
                     </div>
                 )} />
             </Switch>
-            
             );
     }
 }
