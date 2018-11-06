@@ -13,7 +13,7 @@ const LinkButton = (props) => {
                         {props.tags.map(tag => (
                             <Tags text={tag} background={props.tagColors[tag]} key={tag} />
                         ))}
-                    </span>
+                    </span> 
                 </div>
             </button>
         </a>

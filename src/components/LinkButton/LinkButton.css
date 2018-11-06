@@ -1,0 +1,17 @@
+.link-button {
+    width: 100%;
+    margin: 5px auto;
+    border: none;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    background: white;
+    box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.16);
+    border-radius: 3px;
+    font-size: 0.7em;
+}
+
+.link-tags {
+    font-size: 0.8em;
+    margin-top: 5px;
+}
