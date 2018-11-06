@@ -1,6 +1,7 @@
 import React from 'react';
 import './ResourceCard.css';
 import { Link } from 'react-router-dom';
+import Tags from '../Tags/Tags';
 
 const ResourceCard = (props) => {
 
@@ -24,6 +25,14 @@ const ResourceCard = (props) => {
                 </span>
             </h2>
             <p>Total Links: {props.linksCount}</p>
+            <div className="resource-card-tags">
+                {props.tags.map(tag => (
+                    <Tags 
+                        key={tag}
+                        text={tag}
+                        background={props.tagColor[tag]}/>
+                ))}
+            </div>
             <Link to={props.url}>
                 <button
                     style={{ borderColor: props.color, backgroundColor: props.color }}>

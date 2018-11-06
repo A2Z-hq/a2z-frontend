@@ -10,7 +10,7 @@ import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
 import { Route, Switch } from 'react-router-dom';
-import Filter from '../../components/Filter/Filter';
+import Tags from '../../components/Tags/Tags';
 
 class ResourcesPage extends React.Component {
 
@@ -22,7 +22,7 @@ class ResourcesPage extends React.Component {
                 linksCount: "50",
                 fav: false,
                 icon: python,
-                type: "Programming Languages",
+                tags: ["Programming Language"],
             },
             {
                 title: "Machine Learning",
@@ -30,7 +30,7 @@ class ResourcesPage extends React.Component {
                 linksCount: "62",
                 fav: false,
                 icon: ml,
-                type: "Technologies",
+                tags: ["Technology"],
             },
             {
                 title: "Android",
@@ -38,7 +38,7 @@ class ResourcesPage extends React.Component {
                 linksCount: "57",
                 fav: false,
                 icon: android,
-                type: "Technologies",
+                tags: ["Technology"],
             },
             {
                 title: "Frontend",
@@ -46,7 +46,7 @@ class ResourcesPage extends React.Component {
                 linksCount: "125",
                 fav: false,
                 icon: frontend,
-                type: "Technologies",
+                tags: ["Technology"],
             },
             {
                 title: "Backend",
@@ -54,7 +54,7 @@ class ResourcesPage extends React.Component {
                 linksCount: "75",
                 fav: false,
                 icon: backend,
-                type: "Technologies",
+                tags: ["Technology"],
             },
             {
                 title: "Haskell",
@@ -62,7 +62,7 @@ class ResourcesPage extends React.Component {
                 linksCount: "20",
                 fav: false,
                 icon: haskell,
-                type: "Programming Languages",
+                tags: ["Programming Language"],
             },
             {
                 title: "Scala",
@@ -70,11 +70,16 @@ class ResourcesPage extends React.Component {
                 linksCount: "57",
                 fav: false,
                 icon: scala,
-                type: "Programming Languages",
+                tags: ["Programming Language"],
             },
         ],
-
-        resources: []
+        resources: [],
+        majorTags: ["Programming Language", "Technology"],
+        mappedTags: {
+            "Programming Language": "#257281",
+            "Technology": "#8465ac",
+        },
+        selectedTags: []
     }
 
     componentDidMount() {
@@ -109,6 +114,26 @@ class ResourcesPage extends React.Component {
         })
     }
 
+    handleTags = (e) => {
+        const currentTags = this.state.selectedTags;
+        const tag = e.target.dataset.value;
+        if(currentTags.includes(tag)) {
+            const tagIndex = currentTags.indexOf(tag);
+            const newTags = [
+                ...currentTags.slice(0, tagIndex),
+                ...currentTags.slice(tagIndex + 1)
+            ];
+            this.setState({
+                selectedTags: newTags
+            })
+        } else {
+            currentTags.push(tag);
+            this.setState({
+                selectedTags: currentTags
+            })
+        }
+    }
+
     render() {
         return (
             <Switch>
@@ -126,7 +151,17 @@ class ResourcesPage extends React.Component {
                     <div className="resources-page-container">
                         <div className="resources-page-header">
                             <h1>{this.props.title}</h1>
-                            <Filter filterby={this.filterby} options={['Programming Languages', 'Technologies']} />
+                        </div>
+                        <div className="resource-page-tags">
+                            {this.state.majorTags.map(tag => (
+                                <Tags
+                                    key={tag}
+                                    text={tag}
+                                    isClicked={this.state.selectedTags.includes(tag)}
+                                    clickable={true}
+                                    clicked={this.handleTags}
+                                    background={this.state.mappedTags[tag]} />
+                            ))}
                         </div>
                         <div>
                             {this.state.resources.map(res => {
@@ -139,7 +174,9 @@ class ResourcesPage extends React.Component {
                                         linksCount={res.linksCount}
                                         bookmark={this.bookmarkHandler}
                                         isBookmarked={res.fav}
-                                        color={this.props.color}/>
+                                        color={this.props.color}
+                                        tags={res.tags}
+                                        tagColor={this.state.mappedTags}/>
                                 )
                             })}
                         </div>

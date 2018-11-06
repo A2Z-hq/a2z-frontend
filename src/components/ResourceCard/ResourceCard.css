@@ -33,7 +33,11 @@
 .resource-card p {
     font-size: 0.6em;
     color: var(--theme);
-    padding: 15px;
+    padding: 15px 0 0 15px;
+}
+
+.resource-card-tags {
+    padding: 1px 0 10px 10px;
 }
 
 .resource-card button {
