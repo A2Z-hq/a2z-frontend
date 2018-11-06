@@ -9,7 +9,7 @@ import ml from '../../assets/images/icons/ml.png';
 import python from '../../assets/images/icons/python.png';
 import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Filter from '../../components/Filter/Filter';
 
 class ResourcesPage extends React.Component {
@@ -111,41 +111,43 @@ class ResourcesPage extends React.Component {
 
     render() {
         return (
-            <div className="resources-page-container">
-                <div className="resources-page-header">
-                    <h1>{this.props.title}</h1>
-                    <Filter filterby={this.filterby} options={['Programming Languages', 'Technologies']} />
-                </div>
-                <div>
-                    {this.state.resources.map(res => {
-                        return (
-                            <ResourceCard
-                                key={res.title}
-                                icon={res.icon}
-                                url={res.url}
-                                title={res.title}
-                                linksCount={res.linksCount}
-                                bookmark={this.bookmarkHandler}
-                                isBookmarked={res.fav}
-                                color={this.props.color}/>
-                        )
-                    })}
-                </div>
-                <Switch>
-                    {this.state.resources.map(res => (
-                        <Route key={res.title} path={res.url} exact render={() => (
-                            <ResourceCardExpanded
-                                title={res.title}
-                                icon={res.icon}
-                                bookmark={this.bookmarkHandler}
-                                isBookmarked={res.fav}
-                                color={this.props.color}/>
-                        )} />
-                    ))}
-                    <Redirect to="/coding-resources" />
-                </Switch>
-            </div>
-        );
+            <Switch>
+                {this.state.resources.map(res => (
+                    <Route key={res.title} path={res.url} exact render={() => (
+                        <ResourceCardExpanded
+                            title={res.title}
+                            icon={res.icon}
+                            bookmark={this.bookmarkHandler}
+                            isBookmarked={res.fav}
+                            color={this.props.color}/>
+                    )} />
+                ))}
+                <Route path="/coding-resources" render={() => (
+                    <div className="resources-page-container">
+                        <div className="resources-page-header">
+                            <h1>{this.props.title}</h1>
+                            <Filter filterby={this.filterby} options={['Programming Languages', 'Technologies']} />
+                        </div>
+                        <div>
+                            {this.state.resources.map(res => {
+                                return (
+                                    <ResourceCard
+                                        key={res.title}
+                                        icon={res.icon}
+                                        url={res.url}
+                                        title={res.title}
+                                        linksCount={res.linksCount}
+                                        bookmark={this.bookmarkHandler}
+                                        isBookmarked={res.fav}
+                                        color={this.props.color}/>
+                                )
+                            })}
+                        </div>
+                    </div>
+                )} />
+            </Switch>
+            
+            );
     }
 }
 

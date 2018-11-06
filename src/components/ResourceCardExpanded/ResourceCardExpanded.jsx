@@ -1,7 +1,8 @@
 import React from 'react';
 import './ResourceCardExpanded.css';
-import Backdrop from '../Backdrop/Backdrop';
 import { Link } from 'react-router-dom';
+import Tags from '../Tags/Tags';
+import LinkButton from '../LinkButton/LinkButton';
 
 class ResourceCardExpanded extends React.Component {
 
@@ -60,67 +61,83 @@ class ResourceCardExpanded extends React.Component {
         ],
 
         majorTags: ["Free", "Beginner", "Paid", "YouTube", "Practice", "Intermediate", "Advanced"],
-        extraTags: ["Web Development", "Game Development", "Artificial Intelligence", "Scripting"]
+        mappedTags: {
+            "Free": "#49dbbd",
+            "Beginner": "#dbc224",
+            "Paid": "#6fbb2d",
+            "YouTube": "#f67676",
+            "Practice": "#257281",
+            "Intermediate": "#dbc224",
+            "Advanced": "#8465ac",
+        },
+        selectedTags: []
+    }
+
+    handleTags = (e) => {
+        const currentTags = this.state.selectedTags;
+        const tag = e.target.dataset.value;
+        if(currentTags.includes(tag)) {
+            const tagIndex = currentTags.indexOf(tag);
+            const newTags = [
+                ...currentTags.slice(0, tagIndex),
+                ...currentTags.slice(tagIndex + 1)
+            ];
+            this.setState({
+                selectedTags: newTags
+            })
+        } else {
+            currentTags.push(tag);
+            this.setState({
+                selectedTags: currentTags
+            })
+        }
     }
 
     render() {
         return (
             <>
-                <Link to="/coding-resources">
-                    <Backdrop clicked={() => null} />
-                </Link>
                 <div className="expanded-resource-card">
                     <h2>
                         <span>
                             <span>
-                                <img src={this.props.icon} alt="" />
-                            </span>
-                            {this.props.title}
-                        </span>
-                        <span>
-                            <span
-                                className="fa fa-star"
-                                onClick={() => this.props.bookmark(this.props.title)}
-                                style={{ 
-                                    cursor: 'pointer',
-                                    textShadow: '1px 2px 10px rgba(0,0,0,0.3)',
-                                    color: this.props.isBookmarked ? this.props.color : 'white'
-                                }}>
-                            </span>
-                            <span>
                                 <Link to="/coding-resources"> 
                                     <button  className="close">
-                                        <span role="img" aria-label="close-button">❌</span>
+                                        <span role="img" aria-label="close-button">⬅</span>
                                     </button>
                                 </Link>
                             </span>
+                            {this.props.title}
+                        </span>
+                        <span
+                            className="fa fa-star"
+                            onClick={() => this.props.bookmark(this.props.title)}
+                            style={{ 
+                                cursor: 'pointer',
+                                textShadow: '0px 0px 1px rgba(0,0,0,0.5)',
+                                color: this.props.isBookmarked ? this.props.color : '#ddd'
+                            }}>
                         </span>
                     </h2>
                     <div className="resource-tags">
-                        {this.state.majorTags.map(tag => {
-                            return <button className="resource-tag">
-                                {tag}
-                            </button>
-                        })}
+                        {this.state.majorTags.map(tag => (
+                            <Tags
+                                key={tag}
+                                text={tag}
+                                isClicked={this.state.selectedTags.includes(tag)}
+                                clickable={true}
+                                clicked={this.handleTags}
+                                background={this.state.mappedTags[tag]} />
+                        ))}
                     </div>
                     <div className="resource-links-container">
-                        {this.state.links.map(l => {
-                             return <a href={l.link}>
-                                <button>
-                                    {l.description}
-                                    <div className="link-tags">
-                                        Tags:&nbsp;
-                                        <span>
-                                            {l.tags.map(tag => {
-                                                return <button className="resource-tag">
-                                                    {tag}
-                                                </button>
-                                            })}
-                                        </span>
-                                    </div>
-                                </button>
-                            </a>
-                        })}
+                        {this.state.links.map((l, i) => (
+                            <LinkButton
+                                key={i}
+                                link={l.link}
+                                description={l.description}
+                                tags={l.tags}
+                                tagColors={this.state.mappedTags} />
+                        ))}
                     </div>
                 </div>
             </>
