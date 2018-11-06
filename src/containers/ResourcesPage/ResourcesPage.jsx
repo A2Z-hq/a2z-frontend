@@ -106,12 +106,28 @@ class ResourcesPage extends React.Component {
         })
     }
 
-    filterby = (e) => {
-        let filter = e.target.value;
-        let newResources = this.state.resourcesInit.filter(res => res.type === filter);
-        this.setState({
-            resources: newResources
-        })
+    updateCards = () => {
+        const resources = this.state.resourcesInit;
+        const tags = this.state.selectedTags;
+
+        if(tags.length === 0) {
+            this.setState({
+                resources: resources
+            })
+        } else {
+            const newResources = resources.filter(res => {
+                for(let tag of res.tags) {
+                    if(tags.includes(tag)) {
+                        return true
+                    }
+                }
+                return false
+            })
+
+            this.setState({
+                resources: newResources
+            })
+        }
     }
 
     handleTags = (e) => {
@@ -125,12 +141,12 @@ class ResourcesPage extends React.Component {
             ];
             this.setState({
                 selectedTags: newTags
-            })
+            }, this.updateCards)
         } else {
             currentTags.push(tag);
             this.setState({
                 selectedTags: currentTags
-            })
+            }, this.updateCards)
         }
     }
 

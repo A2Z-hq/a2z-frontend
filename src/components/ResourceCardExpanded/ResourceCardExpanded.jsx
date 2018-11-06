@@ -7,7 +7,7 @@ import LinkButton from '../LinkButton/LinkButton';
 class ResourceCardExpanded extends React.Component {
 
     state = {
-        links: [
+        linksInit: [
             {
                 description: "Learn Python | CodeAcademy",
                 link: "https://www.codecademy.com/learn/learn-python",
@@ -59,7 +59,7 @@ class ResourceCardExpanded extends React.Component {
                 tags: ["Practice"]
             },
         ],
-
+        links: [],
         majorTags: ["Free", "Beginner", "Paid", "YouTube", "Practice", "Intermediate", "Advanced"],
         mappedTags: {
             "Free": "#49dbbd",
@@ -73,6 +73,36 @@ class ResourceCardExpanded extends React.Component {
         selectedTags: []
     }
 
+    componentDidMount() {
+        this.setState({
+            links: this.state.linksInit
+        })
+    }
+
+    updateLinks = () => {
+        const links = this.state.linksInit;
+        const tags = this.state.selectedTags;
+
+        if(tags.length === 0) {
+            this.setState({
+                links: links
+            })
+        } else {
+            const newlinks = links.filter(res => {
+                for(let tag of res.tags) {
+                    if(tags.includes(tag)) {
+                        return true
+                    }
+                }
+                return false
+            })
+
+            this.setState({
+                links: newlinks
+            })
+        }
+    }
+
     handleTags = (e) => {
         const currentTags = this.state.selectedTags;
         const tag = e.target.dataset.value;
@@ -84,12 +114,12 @@ class ResourceCardExpanded extends React.Component {
             ];
             this.setState({
                 selectedTags: newTags
-            })
+            }, this.updateLinks)
         } else {
             currentTags.push(tag);
             this.setState({
                 selectedTags: currentTags
-            })
+            }, this.updateLinks)
         }
     }
 
