@@ -102,7 +102,7 @@ class ResourceCardExpanded extends React.Component {
                             <span>
                                 <Link to="/coding-resources"> 
                                     <button  className="close">
-                                        <span role="img" aria-label="close-button">⬅</span>
+                                        ◀
                                     </button>
                                 </Link>
                             </span>

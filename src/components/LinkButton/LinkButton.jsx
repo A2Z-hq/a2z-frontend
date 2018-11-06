@@ -6,7 +6,7 @@ const LinkButton = (props) => {
     return (
         <a href={props.link}>
             <button className="link-button">
-                {props.description}
+                <p>{props.description}</p>
                 <div className="link-tags">
                     Tags:&nbsp;
                     <span>

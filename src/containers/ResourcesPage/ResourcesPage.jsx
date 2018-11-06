@@ -76,7 +76,7 @@ class ResourcesPage extends React.Component {
         resources: [],
         majorTags: ["Programming Language", "Technology"],
         mappedTags: {
-            "Programming Language": "#257281",
+            "Programming Language": "#dbc224",
             "Technology": "#8465ac",
         },
         selectedTags: []
