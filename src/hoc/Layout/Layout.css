@@ -377,3 +377,9 @@ footer {
                 transform: translateX(-40px);
     }
 }
+
+@media only screen and (orientation: portrait) and (max-width: 1024px) and (min-width: 812px) {
+    header {
+        height: 10vh;
+    }
+}

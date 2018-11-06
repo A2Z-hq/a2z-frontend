@@ -1,42 +1,174 @@
 import React from 'react';
 import './ResourceCardExpanded.css';
-import Backdrop from '../Backdrop/Backdrop';
 import { Link } from 'react-router-dom';
+import Tags from '../Tags/Tags';
+import LinkButton from '../LinkButton/LinkButton';
 
 class ResourceCardExpanded extends React.Component {
+
+    state = {
+        linksInit: [
+            {
+                description: "Learn Python | CodeAcademy",
+                link: "https://www.codecademy.com/learn/learn-python",
+                tags: ["Free", "Beginner"]
+            },
+            {
+                description: "Progate Python Classes",
+                link: "https://progate.com/languages/python",
+                tags: ["Beginner"]
+            },
+            {
+                link: "http://bit.ly/2NkrsKh",
+                description: "Absolute Beginner's tutorials | YouTube",
+                tags: ["Beginner", "YouTube"]
+            },
+            {
+                link: "https://in.udacity.com/course/introduction-to-python--ud1110-india",
+                description: "Intro to Python | Udacity",
+                tags: ["Free", "Beginner"]
+            },
+            {
+                link: "https://www.coursera.org/specializations/python",
+                description: "Python for Everybody",
+                tags: ["Paid", "Beginner"]
+            },
+            {
+                link: "https://jeffknupp.com/",
+                description: "Write Better Function with Python",
+                tags: []
+            },
+            {
+                link: "https://automatetheboringstuff.com/",
+                description: "Automate Boring stuff with Python",
+                tags: ["Intermediate", "Free"]
+            },
+            {
+                link: "https://python.swaroopch.com/",
+                description: "A byte of Python",
+                tags: []
+            },
+            {
+                link: "https://realpython.com/",
+                description: "Real Python",
+                tags: ["Free"]
+            },
+            {
+                link: "https://projecteuler.net/",
+                description: "Project Euler",
+                tags: ["Practice"]
+            },
+        ],
+        links: [],
+        majorTags: ["Free", "Beginner", "Paid", "YouTube", "Practice", "Intermediate", "Advanced"],
+        mappedTags: {
+            "Free": "#49dbbd",
+            "Beginner": "#dbc224",
+            "Paid": "#6fbb2d",
+            "YouTube": "#f67676",
+            "Practice": "#257281",
+            "Intermediate": "#dbc224",
+            "Advanced": "#8465ac",
+        },
+        selectedTags: []
+    }
+
+    componentDidMount() {
+        this.setState({
+            links: this.state.linksInit
+        })
+    }
+
+    updateLinks = () => {
+        const links = this.state.linksInit;
+        const tags = this.state.selectedTags;
+
+        if(tags.length === 0) {
+            this.setState({
+                links: links
+            })
+        } else {
+            const newlinks = links.filter(res => {
+                for(let tag of res.tags) {
+                    if(tags.includes(tag)) {
+                        return true
+                    }
+                }
+                return false
+            })
+
+            this.setState({
+                links: newlinks
+            })
+        }
+    }
+
+    handleTags = (e) => {
+        const currentTags = this.state.selectedTags;
+        const tag = e.target.dataset.value;
+        if(currentTags.includes(tag)) {
+            const tagIndex = currentTags.indexOf(tag);
+            const newTags = [
+                ...currentTags.slice(0, tagIndex),
+                ...currentTags.slice(tagIndex + 1)
+            ];
+            this.setState({
+                selectedTags: newTags
+            }, this.updateLinks)
+        } else {
+            currentTags.push(tag);
+            this.setState({
+                selectedTags: currentTags
+            }, this.updateLinks)
+        }
+    }
+
     render() {
         return (
             <>
-                <Link to="/coding-resources">
-                    <Backdrop clicked={() => null} />
-                </Link>
                 <div className="expanded-resource-card">
                     <h2>
                         <span>
                             <span>
-                                <img src={this.props.icon} alt="" />
-                            </span>
-                            {this.props.title}
-                        </span>
-                        <span>
-                            <span
-                                className="fa fa-star"
-                                onClick={() => this.props.bookmark(this.props.title)}
-                                style={{ 
-                                    cursor: 'pointer',
-                                    textShadow: '1px 2px 10px rgba(0,0,0,0.3)',
-                                    color: this.props.isBookmarked ? this.props.color : 'white'
-                                }}>
-                            </span>
-                            <span>
                                 <Link to="/coding-resources"> 
                                     <button  className="close">
-                                        <span role="img" aria-label="close-button">❌</span>
+                                        ◀
                                     </button>
                                 </Link>
                             </span>
+                            {this.props.title}
+                        </span>
+                        <span
+                            className="fa fa-star"
+                            onClick={() => this.props.bookmark(this.props.title)}
+                            style={{ 
+                                cursor: 'pointer',
+                                textShadow: '0px 0px 1px rgba(0,0,0,0.5)',
+                                color: this.props.isBookmarked ? this.props.color : '#ddd'
+                            }}>
                         </span>
                     </h2>
+                    <div className="resource-tags">
+                        {this.state.majorTags.map(tag => (
+                            <Tags
+                                key={tag}
+                                text={tag}
+                                isClicked={this.state.selectedTags.includes(tag)}
+                                clickable={true}
+                                clicked={this.handleTags}
+                                background={this.state.mappedTags[tag]} />
+                        ))}
+                    </div>
+                    <div className="resource-links-container">
+                        {this.state.links.map((l, i) => (
+                            <LinkButton
+                                key={i}
+                                link={l.link}
+                                description={l.description}
+                                tags={l.tags}
+                                tagColors={this.state.mappedTags} />
+                        ))}
+                    </div>
                 </div>
             </>
         );
