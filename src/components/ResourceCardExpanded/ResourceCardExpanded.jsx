@@ -7,76 +7,37 @@ import LinkButton from '../LinkButton/LinkButton';
 class ResourceCardExpanded extends React.Component {
 
     state = {
-        linksInit: [
-            {
-                description: "Learn Python | CodeAcademy",
-                link: "https://www.codecademy.com/learn/learn-python",
-                tags: ["Free", "Beginner"]
-            },
-            {
-                description: "Progate Python Classes",
-                link: "https://progate.com/languages/python",
-                tags: ["Beginner"]
-            },
-            {
-                link: "http://bit.ly/2NkrsKh",
-                description: "Absolute Beginner's tutorials | YouTube",
-                tags: ["Beginner", "YouTube"]
-            },
-            {
-                link: "https://in.udacity.com/course/introduction-to-python--ud1110-india",
-                description: "Intro to Python | Udacity",
-                tags: ["Free", "Beginner"]
-            },
-            {
-                link: "https://www.coursera.org/specializations/python",
-                description: "Python for Everybody",
-                tags: ["Paid", "Beginner"]
-            },
-            {
-                link: "https://jeffknupp.com/",
-                description: "Write Better Function with Python",
-                tags: []
-            },
-            {
-                link: "https://automatetheboringstuff.com/",
-                description: "Automate Boring stuff with Python",
-                tags: ["Intermediate", "Free"]
-            },
-            {
-                link: "https://python.swaroopch.com/",
-                description: "A byte of Python",
-                tags: []
-            },
-            {
-                link: "https://realpython.com/",
-                description: "Real Python",
-                tags: ["Free"]
-            },
-            {
-                link: "https://projecteuler.net/",
-                description: "Project Euler",
-                tags: ["Practice"]
-            },
-        ],
+        linksInit: [],
         links: [],
-        majorTags: ["Free", "Beginner", "Paid", "YouTube", "Practice", "Intermediate", "Advanced"],
-        mappedTags: {
-            "Free": "#49dbbd",
-            "Beginner": "#dbc224",
-            "Paid": "#6fbb2d",
-            "YouTube": "#f67676",
-            "Practice": "#257281",
-            "Intermediate": "#dbc224",
-            "Advanced": "#8465ac",
-        },
-        selectedTags: []
+        majorTags: [],
+        mappedTags: {},
+        selectedTags: [],
+        colors: ["#dbc224", "#8465ac", "#06addb", "#49dbbd", "#f67676", "#6fbb2d", "#257281", "#595a5b"]
     }
 
     componentDidMount() {
-        this.setState({
-            links: this.state.linksInit
-        })
+        fetch("https://api.myjson.com/bins/10vhgm")
+            .then(res => res.json())
+            .then(res => {
+                let majorTags = []
+                for(let r of res) {
+                    for(let tag of r.tags) {
+                        if(!majorTags.includes(tag)) {
+                            majorTags.push(tag)
+                        }
+                    }
+                }
+                let mappedTags = {}
+                for(let tag of majorTags) {
+                    mappedTags[tag] = this.state.colors[Math.round((Math.random()*(this.state.colors.length-1)))];
+                }
+                this.setState({
+                    linksInit: res,
+                    links: res,
+                    majorTags,
+                    mappedTags,
+                })
+            })
     }
 
     updateLinks = () => {
