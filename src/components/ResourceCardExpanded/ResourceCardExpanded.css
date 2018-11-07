@@ -1,0 +1,75 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.expanded-resource-card {
+    z-index: 16;
+    background: #fff;
+    width: 90%;
+    margin: 4vh auto;
+    margin-bottom: 10vh;
+    min-height: 70vh;
+}
+
+.expanded-resource-card h2 {
+    font-size: 1.2em;
+    color: #262626;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.expanded-resource-card img {
+    height: 15px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.close {
+    margin-right: 10px;
+    border-style: solid;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: transparent;
+    border-radius: 50%;
+    color: white;
+    padding: 0.1em 0.5em 0.3em 0.3em;
+    font-size: 0.7em;
+    cursor: pointer;
+    outline: none;
+}
+
+.close:hover, .close:focus {
+    outline: none;
+    transform: scale(1.1);
+}
+
+.resource-links-container {
+    width: 90%;
+    box-sizing: border-box;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+    .expanded-resource-card h2 {
+        font-size: 2vw;
+        padding: 2vh;
+    }
+
+    .resource-tags {
+        padding-left: 5vw;
+        font-size: 1.4em;
+    }
+
+    .close {
+        font-size: 1.1vw;
+        margin-right: 2vw;
+        display: inline-block;
+        vertical-align: middle;
+        box-sizing: border-box;
+        padding: 0.1vw 0.5vw 0.2vw 0.3vw;
+    }   
+}
