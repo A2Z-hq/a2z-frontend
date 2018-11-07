@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Layout from '../../hoc/Layout/Layout';
 import Home from '../Home/Home';
 import Landing from '../../components/Landing/Landing';
+import Signup from '../Signup/Signup';
+import Login from '../Login/Login';
 import { Provider } from '../../components/Context/Context';
 import ResourcesPage from '../ResourcesPage/ResourcesPage';
 import Lost from '../../components/Lost/Lost';
@@ -52,6 +54,8 @@ class App extends Component {
                   <Landing toggleLanding={this.toggleLanding} />
                 )} />
                 <Route path="/home" exact component={Home} />
+                <Route path="/signup" exact component={Signup} />
+                <Route path="/login" exact component={Login} />
                 <Route path="/coding-resources" render={() => (
                   <ResourcesPage title="Coding Resources" color="#06addb" />
                 )} />
