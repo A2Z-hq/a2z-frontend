@@ -17,7 +17,7 @@
 .loader {
     font-family: monospace;
     font-weight: 900;
-    font-size: 2vw;
+    font-size: 1rem;
     color: white;
     letter-spacing: 0.8vw;
 }
@@ -37,5 +37,5 @@
 }
 
 .loader p {
-    margin-top: 50px;
+    margin-top: 2vh;
 }
