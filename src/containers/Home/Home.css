@@ -62,3 +62,10 @@
         margin-top: 0px;
     }
 }
+
+@media only screen and (orientation: portrait) and (max-width: 1024px) and (min-width: 812px) {
+    #home-page-container {
+        min-height: 52vh;
+        margin: 0;
+    }
+}
