@@ -5,13 +5,13 @@ import Tags from '../Tags/Tags';
 
 const ResourceCard = (props) => {
 
+    const image = (props.icon) ? <span><img src={props.icon} alt="" /></span> : null;
+
     return (
         <div className="resource-card">
             <h2>
                 <span>
-                    <span>
-                        <img src={props.icon} alt="" />
-                    </span>
+                    {image}
                     {props.title}
                 </span>
                 <span

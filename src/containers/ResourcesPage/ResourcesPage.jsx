@@ -1,13 +1,6 @@
 import React from 'react';
 import './ResourcesPage.css';
 import ResourceCard from '../../components/ResourceCard/ResourceCard';
-import android from '../../assets/images/icons/android.png';
-import backend from '../../assets/images/icons/backend.png';
-import frontend from '../../assets/images/icons/frontend.png';
-import haskell from '../../assets/images/icons/haskell.png';
-import ml from '../../assets/images/icons/ml.png';
-import python from '../../assets/images/icons/python.png';
-import scala from '../../assets/images/icons/scala.png';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
 import { Route, Switch } from 'react-router-dom';
 import Tags from '../../components/Tags/Tags';
@@ -15,77 +8,40 @@ import Tags from '../../components/Tags/Tags';
 class ResourcesPage extends React.Component {
 
     state = {
-        resourcesInit: [
-            {
-                title: "Python",
-                url: "/coding-resources/python",
-                linksCount: "50",
-                fav: false,
-                icon: python,
-                tags: ["Programming Language"],
-            },
-            {
-                title: "Machine Learning",
-                url: "/coding-resources/ml",
-                linksCount: "62",
-                fav: false,
-                icon: ml,
-                tags: ["Technology"],
-            },
-            {
-                title: "Android",
-                url: "/coding-resources/android",
-                linksCount: "57",
-                fav: false,
-                icon: android,
-                tags: ["Technology"],
-            },
-            {
-                title: "Frontend",
-                url: "/coding-resources/frontend",
-                linksCount: "125",
-                fav: false,
-                icon: frontend,
-                tags: ["Technology"],
-            },
-            {
-                title: "Backend",
-                url: "/coding-resources/backend",
-                linksCount: "75",
-                fav: false,
-                icon: backend,
-                tags: ["Technology"],
-            },
-            {
-                title: "Haskell",
-                url: "/coding-resources/haskell",
-                linksCount: "20",
-                fav: false,
-                icon: haskell,
-                tags: ["Programming Language"],
-            },
-            {
-                title: "Scala",
-                url: "/coding-resources/scala",
-                linksCount: "57",
-                fav: false,
-                icon: scala,
-                tags: ["Programming Language"],
-            },
-        ],
+        resourcesInit: [],
         resources: [],
-        majorTags: ["Programming Language", "Technology"],
-        mappedTags: {
-            "Programming Language": "#dbc224",
-            "Technology": "#8465ac",
-        },
-        selectedTags: []
+        majorTags: [],
+        mappedTags: {},
+        selectedTags: [],
+        colors: ["#dbc224", "#8465ac", "#06addb", "#49dbbd", "#f67676", "#6fbb2d", "#257281", "#595a5b"]
     }
 
     componentDidMount() {
-        this.setState({
-            resources: this.state.resourcesInit
-        })
+        fetch('https://api.myjson.com/bins/iw6zq')
+            .then(res => res.json())
+            .then(res => {
+                let majorTags = []
+                for(let r of res) {
+                    for(let tag of r.tags) {
+                        if(!majorTags.includes(tag)) {
+                            majorTags.push(tag)
+                        }
+                    }
+                }
+                let mappedTags = {}
+                for(let tag of majorTags) {
+                    mappedTags[tag] = this.state.colors[Math.round((Math.random()*(this.state.colors.length-1)))];
+                }
+                for(let i in res) {
+                    res[i].url = "/coding-resources/" + res[i].title.toLowerCase()
+                }
+                this.setState({
+                    resourcesInit: res,
+                    resources: res,
+                    majorTags,
+                    mappedTags,
+                })
+            })
     }
 
     bookmarkHandler = (title) => {
