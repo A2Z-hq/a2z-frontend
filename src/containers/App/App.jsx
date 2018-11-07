@@ -54,6 +54,8 @@ class App extends Component {
                   <Landing toggleLanding={this.toggleLanding} />
                 )} />
                 <Route path="/home" exact component={Home} />
+                <Route path="/signup" exact component={Signup} />
+                <Route path="/login" exact component={Login} />
                 <Route path="/coding-resources" render={() => (
                   <ResourcesPage title="Coding Resources" color="#06addb" />
                 )} />
