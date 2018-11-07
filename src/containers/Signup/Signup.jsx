@@ -20,11 +20,12 @@ class Signup extends Component {
                         <h1>SignUp </h1>
                         <p>Please fill in this form to create an account.</p>
                         <br/>
-                        <label for="name" class="name">Name</label>
+                        <label for="name" class="name">FullName</label>
                         <input
                             type={Text}
-                            name="Name"
-                            placeholder="Enter your name"
+                            name="FullName"
+                            placeholder="FullName*"
+                            required="true"
                             onChange={(event, newValue) => this.setState({ name: newValue })}
                         />
                         <br />
@@ -32,13 +33,15 @@ class Signup extends Component {
                         <input
                             type={Text}
                             name="UserName"
-                            placeholder="Enter your desired username"
+                            placeholder="UserName*"
+                            required="true"
                             onChange={(event, newValue) => this.setState({ user_name: newValue })}
                         />
                         <br />
                         <label for="email" class="email">Email Address</label>
                         <input
-                            placeholder="Enter your Email"
+                            placeholder="Email Address*"
+                            required="true"
                             type="email"
                             name="Email"
                             onChange={(event, newValue) => this.setState({ email: newValue })}
@@ -47,7 +50,8 @@ class Signup extends Component {
                         <label for="password" class="password">Password</label>
                         <input
                             type="password"
-                            placeholder="Enter your Password"
+                            placeholder="Password*"
+                            required="true"
                             name="Password"
                             onChange={(event, newValue) => this.setState({ password: newValue })}
                         />
@@ -55,7 +59,8 @@ class Signup extends Component {
                         <label for="re-password" class="re-password">Re-Password</label>
                         <input
                             type="password"
-                            placeholder="Re-Enter your Password"
+                            placeholder="Re-Enter Password*"
+                            required="true"
                             name="Password"
                             onChange={(event, newValue) => this.setState({ re_password: newValue })}
                         />
