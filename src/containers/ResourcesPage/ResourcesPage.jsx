@@ -4,10 +4,12 @@ import ResourceCard from '../../components/ResourceCard/ResourceCard';
 import ResourceCardExpanded from '../../components/ResourceCardExpanded/ResourceCardExpanded';
 import { Route, Switch } from 'react-router-dom';
 import Tags from '../../components/Tags/Tags';
+import Loader from '../../components/Loader/Loader';
 
 class ResourcesPage extends React.Component {
 
     state = {
+        loading: true,
         resourcesInit: [],
         resources: [],
         majorTags: [],
@@ -41,6 +43,7 @@ class ResourcesPage extends React.Component {
                     resources: res,
                     majorTags,
                     mappedTags,
+                    loading: false
                 })
             })
     }
@@ -108,6 +111,9 @@ class ResourcesPage extends React.Component {
     }
 
     render() {
+
+        const loader = this.state.loading ? <Loader /> : null;
+
         return (
             <Switch>
                 {this.state.resources.map(res => (
@@ -122,39 +128,42 @@ class ResourcesPage extends React.Component {
                     )} />
                 ))}
                 <Route path="/coding-resources" render={() => (
-                    <div className="resources-page-container">
-                        <div className="resources-page-header">
-                            <h1>{this.props.title}</h1>
+                    <>
+                        {loader}
+                        <div className="resources-page-container">
+                            <div className="resources-page-header">
+                                <h1>{this.props.title}</h1>
+                            </div>
+                            <div className="resource-page-tags">
+                                {this.state.majorTags.map(tag => (
+                                    <Tags
+                                        key={tag}
+                                        text={tag}
+                                        isClicked={this.state.selectedTags.includes(tag)}
+                                        clickable={true}
+                                        clicked={this.handleTags}
+                                        background={this.state.mappedTags[tag]} />
+                                ))}
+                            </div>
+                            <div>
+                                {this.state.resources.map(res => {
+                                    return (
+                                        <ResourceCard
+                                            key={res.title}
+                                            icon={res.icon}
+                                            url={res.url}
+                                            title={res.title}
+                                            linksCount={res.linksCount}
+                                            bookmark={this.bookmarkHandler}
+                                            isBookmarked={res.fav}
+                                            color={this.props.color}
+                                            tags={res.tags}
+                                            tagColor={this.state.mappedTags}/>
+                                    )
+                                })}
+                            </div>
                         </div>
-                        <div className="resource-page-tags">
-                            {this.state.majorTags.map(tag => (
-                                <Tags
-                                    key={tag}
-                                    text={tag}
-                                    isClicked={this.state.selectedTags.includes(tag)}
-                                    clickable={true}
-                                    clicked={this.handleTags}
-                                    background={this.state.mappedTags[tag]} />
-                            ))}
-                        </div>
-                        <div>
-                            {this.state.resources.map(res => {
-                                return (
-                                    <ResourceCard
-                                        key={res.title}
-                                        icon={res.icon}
-                                        url={res.url}
-                                        title={res.title}
-                                        linksCount={res.linksCount}
-                                        bookmark={this.bookmarkHandler}
-                                        isBookmarked={res.fav}
-                                        color={this.props.color}
-                                        tags={res.tags}
-                                        tagColor={this.state.mappedTags}/>
-                                )
-                            })}
-                        </div>
-                    </div>
+                    </>
                 )} />
             </Switch>
             );

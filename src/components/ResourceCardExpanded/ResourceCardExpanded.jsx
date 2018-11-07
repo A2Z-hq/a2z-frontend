@@ -3,10 +3,12 @@ import './ResourceCardExpanded.css';
 import { Link } from 'react-router-dom';
 import Tags from '../Tags/Tags';
 import LinkButton from '../LinkButton/LinkButton';
+import Loader from '../Loader/Loader';
 
 class ResourceCardExpanded extends React.Component {
 
     state = {
+        loading: true,
         linksInit: [],
         links: [],
         majorTags: [],
@@ -36,6 +38,7 @@ class ResourceCardExpanded extends React.Component {
                     links: res,
                     majorTags,
                     mappedTags,
+                    loading: false
                 })
             })
     }
@@ -85,8 +88,12 @@ class ResourceCardExpanded extends React.Component {
     }
 
     render() {
+
+        const loader = this.state.loading ? <Loader /> : null;
+
         return (
             <>
+                {loader}
                 <div className="expanded-resource-card">
                     <h2>
                         <span>
