@@ -34,6 +34,7 @@ class ResourcesPage extends React.Component {
                 }
                 for(let i in res) {
                     res[i].url = "/coding-resources/" + res[i].title.toLowerCase()
+                    res[i].fetch = "https://api.myjson.com/bins/10vhgm";
                 }
                 this.setState({
                     resourcesInit: res,
@@ -116,6 +117,7 @@ class ResourcesPage extends React.Component {
                             icon={res.icon}
                             bookmark={this.bookmarkHandler}
                             isBookmarked={res.fav}
+                            fetch={res.fetch}
                             color={this.props.color}/>
                     )} />
                 ))}

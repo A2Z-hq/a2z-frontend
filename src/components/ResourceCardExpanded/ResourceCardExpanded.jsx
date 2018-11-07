@@ -16,7 +16,7 @@ class ResourceCardExpanded extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://api.myjson.com/bins/10vhgm")
+        fetch(this.props.fetch)
             .then(res => res.json())
             .then(res => {
                 let majorTags = []
