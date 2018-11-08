@@ -1,6 +1,7 @@
 import React from 'react';
 import './HackathonsCard.css';
 import Tags from '../Tags/Tags';
+import link from '../../assets/images/link.png';
 
 const HackathonsCard = (props) => {
     return (
@@ -26,7 +27,7 @@ const HackathonsCard = (props) => {
                 })}
             </div>
             <button className="side-button view">
-                <span role="img" aria-label="Link to hackathon">🔗</span>
+                <img src={link} alt="Go" />
             </button>
         </div>
     );

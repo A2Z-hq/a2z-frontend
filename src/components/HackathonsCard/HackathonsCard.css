@@ -42,7 +42,7 @@
 
 .view {
     position: absolute;
-    padding: 15px 15px;
+    padding: 15px 17px;
     background: #f67676;
     border: 1px solid #f67676;
     border-radius: 50%;
@@ -54,11 +54,12 @@
     transition: all 0.2s;
 }
 
+.view img {
+    max-width: 15px;
+}
+
 .view:hover {
     transform: rotate(0deg);
-    color: black;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .subscribe {
